@@ -8,12 +8,13 @@ import {
   FETCH_PHONE_BY_ID_FAILURE,
   FETCH_PHONE_BY_ID_START,
   FETCH_PHONE_BY_ID_SUCCESS,
-  ADD_PHONE_TO_BASKET
+  ADD_PHONE_TO_BASKET,
+  SEARCH_PHONE
 } from './actionTypes'
 import {
   fetchPhones as fetchPhonesApi,
   loadMorePhones as loadMorePhonesApi,
-  fetchPhoneById as fetchPhoneByIdApi,
+  fetchPhoneById as fetchPhoneByIdApi
 } from '../api'
 import {getRenderedPhonesLength} from '../selectors'
 
@@ -73,7 +74,7 @@ export const fetchPhoneById = id => async dispatch => {
       type: FETCH_PHONE_BY_ID_SUCCESS,
       payload: phone
     })
-  } catch(err) {
+  } catch (err) {
     dispatch({
       type: FETCH_PHONE_BY_ID_FAILURE,
       payload: err,
@@ -86,5 +87,12 @@ export const addPhoneToBasket = id => dispatch => {
   dispatch({
     type: ADD_PHONE_TO_BASKET,
     payload: id
+  })
+}
+
+export const searchPhone = text => dispatch => {
+  dispatch({
+    type: SEARCH_PHONE,
+    payload: text
   })
 }

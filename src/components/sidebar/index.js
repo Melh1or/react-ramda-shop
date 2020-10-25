@@ -1,10 +1,14 @@
 import React from 'react'
 
 import BasketCart from '../basket'
+import Search from '../search'
 
 const Sidebar = () => {
   return (
-    <BasketCart />
+    <div>
+      <BasketCart />
+      <Search />
+    </div>
   )
 }
 
