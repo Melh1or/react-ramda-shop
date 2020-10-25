@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import * as R from 'ramda'
 import {Link} from 'react-router-dom'
 
-import {fetchPhones, loadMorePhones} from '../../actions'
+import {fetchPhones, loadMorePhones, addPhoneToBasket} from '../../actions'
 import {getPhones} from '../../selectors'
 import Layout from '../layout'
 
@@ -14,6 +14,7 @@ class Phones extends React.Component {
   }
 
   renderPhone(phone, index) {
+    const {addPhoneToBasket} = this.props
     const shortDescription = `${R.take(60, phone.description)}...`
     return (
       <div className='col-sm-4 col-lg-4 col-md-4 book-list' key={index}>
@@ -28,7 +29,10 @@ class Phones extends React.Component {
             </h4>
             <p>{shortDescription}</p>
             <div className='itemButton'>
-              <button className='btn btn-primary'>
+              <button
+                onClick={() => addPhoneToBasket(phone.id)}
+                className='btn btn-primary'
+              >
                 Buy now!
               </button>
               <Link className='btn btn-default' to={`/phones/${phone.id}`}>
@@ -70,7 +74,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchPhones,
-  loadMorePhones
+  loadMorePhones,
+  addPhoneToBasket
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Phones)
