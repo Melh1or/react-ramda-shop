@@ -3,7 +3,12 @@ import {connect} from 'react-redux'
 import * as R from 'ramda'
 import {Link} from 'react-router-dom'
 
-import {fetchPhones, loadMorePhones, addPhoneToBasket} from '../../actions'
+import {
+  fetchPhones,
+  loadMorePhones,
+  addPhoneToBasket,
+  fetchCategories
+} from '../../actions'
 import {getPhones} from '../../selectors'
 import Layout from '../layout'
 
@@ -11,6 +16,7 @@ class Phones extends React.Component {
 
   componentDidMount() {
     this.props.fetchPhones()
+    this.props.fetchCategories()
   }
 
   renderPhone(phone, index) {
@@ -75,7 +81,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   fetchPhones,
   loadMorePhones,
-  addPhoneToBasket
+  addPhoneToBasket,
+  fetchCategories
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Phones)
