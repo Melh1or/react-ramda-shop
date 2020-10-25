@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 
 import {fetchPhones, loadMorePhones} from '../../actions'
 import {getPhones} from '../../selectors'
+import Layout from '../layout'
 
 class Phones extends React.Component {
 
@@ -44,19 +45,21 @@ class Phones extends React.Component {
     const {phones, loadMorePhones} = this.props
 
     return (
-      <div className='books row'>
-        {phones.map((phone, index) => this.renderPhone(phone, index))}
-        <div className='row'>
-          <div className='col-md-12'>
-            <button
-              onClick={loadMorePhones}
-              className='pull-right btn btn-primary'
-            >
-              Load More
-            </button>
+      <Layout>
+        <div className='books row'>
+          {phones.map((phone, index) => this.renderPhone(phone, index))}
+          <div className='row'>
+            <div className='col-md-12'>
+              <button
+                onClick={loadMorePhones}
+                className='pull-right btn btn-primary'
+              >
+                Load More
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </Layout>
     )
   }
 }
