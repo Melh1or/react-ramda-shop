@@ -74,8 +74,8 @@ class Phones extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  phones: getPhones(state)
+const mapStateToProps = (state, ownProps) => ({
+  phones: getPhones(state, ownProps)
 })
 
 const mapDispatchToProps = {
